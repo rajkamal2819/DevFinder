@@ -76,13 +76,10 @@ public class MoreFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_more, container, false);
 
-        addtag = (Button) getActivity().findViewById(R.id.addTag);
+      /*  addtag = (Button) getActivity().findViewById(R.id.addTag);
         linkedin = (ImageView) getActivity().findViewById(R.id.linkedin_img);
         stackoverflow = (ImageView) getActivity().findViewById(R.id.stackoverflow_img);
-        github = (ImageView) getActivity().findViewById(R.id.github_img);
-
-
-
+        github = (ImageView) getActivity().findViewById(R.id.github_img);*/
 
         //Toast.makeText(getContext(), "On create view", Toast.LENGTH_SHORT).show();
 
