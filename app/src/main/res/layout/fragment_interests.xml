@@ -7,25 +7,47 @@
     tools:context=".Fragments.Interests">
 
     <TextView
+        android:id="@+id/interest_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Add interests" />
+
     <EditText
+        android:id="@+id/interest_edit"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:layout_margin="20dp"
         android:background="#C9DDF8"
+        android:hint="Enter Tag"
         android:inputType="text" />
     <Button
-        android:layout_marginLeft="150dp"
+        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add"/>
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/tag_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.google.android.material.chip.ChipGroup>
+
+    <EditText
+        android:id="@+id/editTextTextPostalAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter Description"
+        android:inputType="textPostalAddress" />
+
     <Button
-        android:id="@+id/done"
-        android:layout_marginTop="200dp"
-        android:layout_marginLeft="150dp"
+        android:id="@+id/btn_done"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Done"/>
+        android:layout_gravity="center"
+        android:layout_margin="50dp"
+
+        android:text="Done" />
+
 </LinearLayout>
