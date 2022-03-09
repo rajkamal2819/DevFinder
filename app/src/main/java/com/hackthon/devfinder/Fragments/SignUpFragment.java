@@ -99,7 +99,7 @@ public class SignUpFragment extends Fragment {
                                 String id = task.getResult().getUser().getUid();
                                 firebaseDatabase.getReference().child("Users").child(id).setValue(user1);
 
-                                Intent x = new Intent(getView().getContext(), UserInfo.class);
+                                Intent x = new Intent(getView().getContext(), MainActivity.class);
                                 startActivity(x);
                                 Log.i(LOG_TAG, "Update UI Working");
 
@@ -116,7 +116,7 @@ public class SignUpFragment extends Fragment {
 
     private void updateUI(FirebaseUser currentUser) {
         if (currentUser != null) {
-            Intent x = new Intent(getView().getContext(), UserInfo.class);
+            Intent x = new Intent(getView().getContext(), MainActivity.class);
             startActivity(x);
             Log.i(LOG_TAG, "Update UI Working");
         }
