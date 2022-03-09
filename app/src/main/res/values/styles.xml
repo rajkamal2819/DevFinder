@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="mainPage" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimaryDark">@color/light_purple</item>
+        <item name="android:navigationBarColor">@color/white</item>
+    </style>
+
+    <style name="logInPage" parent="Theme.AppCompat.Light.NoActionBar">
+    </style>
+
+    <!--<style name="profile" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:navigationBarColor">#730264</item>
+    </style>-->
+
+
+</resources>

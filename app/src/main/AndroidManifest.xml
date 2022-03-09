@@ -13,6 +13,8 @@
         android:theme="@style/Theme.DevFinder">
         <activity
             android:name=".Activities.Authentications"
+            android:screenOrientation="portrait"
+            android:theme="@style/mainPage"
             android:exported="true">
 
             <intent-filter>
@@ -23,6 +25,8 @@
 
         </activity>
         <activity
+            android:theme="@style/mainPage"
+            android:screenOrientation="portrait"
             android:name=".MainActivity"
             android:exported="true">
         </activity>
