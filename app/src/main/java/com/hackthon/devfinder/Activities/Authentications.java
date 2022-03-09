@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.hackthon.devfinder.Adapters.FragmentAdapter;
 import com.hackthon.devfinder.MainActivity;
@@ -18,6 +19,7 @@ public class Authentications extends AppCompatActivity {
     ViewPager viewPager;
     TabLayout tabLayout;
     ActivityAuthenticationsBinding binding;
+    FloatingActionButton googleAuthButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +33,7 @@ public class Authentications extends AppCompatActivity {
         viewPager.setAdapter(new FragmentAdapter(getSupportFragmentManager()));
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-
+        googleAuthButton = findViewById(R.id.google_auth_button);
         binding.googleAuthButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
