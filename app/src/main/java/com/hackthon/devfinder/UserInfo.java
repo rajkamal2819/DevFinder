@@ -52,8 +52,9 @@ Button signout;
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         User users = snapshot.getValue(User.class);
                       /*  Picasso.get().load(users.getProfilePic()).placeholder(R.drawable.user_profile_img).into(binding.editProfilePhoto);*/
-                        email.setText(users.getEmail());
-                        username.setText(users.getUsername());
+                        email.setText(users.getEmailId());
+                        username.setText(users.getName());
+
                        /* binding.description.setText(users.getStatus());
                         binding.username.setText(users.getName());*/
                     }

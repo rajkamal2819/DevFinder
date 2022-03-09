@@ -1,50 +1,89 @@
 package com.hackthon.devfinder;
 
 
-import com.google.firebase.database.IgnoreExtraProperties;
 
-
-
-
-
-        @IgnoreExtraProperties
 public class User {
-            public String getPassword() {
-                return password;
-            }
+    String profilePic, name, emailId, password, number, userId;
+    String status;
 
-            public void setPassword(String password) {
-                this.password = password;
-            }
-
-            public String getUsername() {
-                return username;
-            }
-
-            public void setUsername(String username) {
-                this.username = username;
-            }
-
-            public String getEmail() {
-                return email;
-            }
-
-            public void setEmail(String email) {
-                this.email = email;
-            }
-
-            public String password;
-    public String username;
-    public String email;
-
-    public User() {
-        // Default constructor required for calls to DataSnapshot.getValue(User.class)
+    public User(String profilePic, String name, String emailId, String password, String number, String userId) {
+        this.profilePic = profilePic;
+        this.name = name;
+        this.emailId = emailId;
+        this.password = password;
+        this.number = number;
+        this.userId = userId;
     }
 
-    public User(String username, String email,String password) {
-        this.username = username;
-        this.email = email;
+    public User(String name, String emailId, String password) {
+        this.name = name;
+        this.emailId = emailId;
         this.password = password;
     }
 
+    public User(String name, String emailId, String password, String status) {
+        this.name = name;
+        this.emailId = emailId;
+        this.password = password;
+        this.status = status;
+    }
+
+    public User() {
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getProfilePic() {
+        return profilePic;
+    }
+
+    public void setProfilePic(String profilePic) {
+        this.profilePic = profilePic;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmailId() {
+        return emailId;
+    }
+
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 }

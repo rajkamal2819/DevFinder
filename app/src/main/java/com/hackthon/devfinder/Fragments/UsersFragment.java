@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,13 +23,14 @@ import com.google.firebase.database.ValueEventListener;
 import com.hackthon.devfinder.Adapters.UserAdapter;
 import com.hackthon.devfinder.R;
 import com.hackthon.devfinder.User;
+import com.hackthon.devfinder.databinding.FragmentUsersBinding;
 
 import java.util.ArrayList;
 
 public class UsersFragment extends Fragment {
 
     FirebaseUser firebaseUser;
-   ArrayList<User> userArray = new ArrayList<>();
+   ArrayList<User> list = new ArrayList<>();
    RecyclerView rv;
     FirebaseAuth auth;
     FirebaseDatabase database;
@@ -36,6 +38,7 @@ public class UsersFragment extends Fragment {
         // Required empty public constructor
     }
 
+    FragmentUsersBinding binding;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,22 +49,31 @@ public class UsersFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_users, container, false);
-        auth = FirebaseAuth.getInstance();
+        binding = FragmentUsersBinding.inflate(inflater, container, false);
+
         database = FirebaseDatabase.getInstance();
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        rv = view.findViewById(R.id.recyclerViewUser);
+        UserAdapter userAdapter = new UserAdapter(list,getContext());
+        binding.recyclerViewUser.setAdapter(userAdapter);
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Uses");
-        reference.addValueEventListener(new ValueEventListener() {
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+       // Log.i(LOG_TAG,"FireBaseUI: "+firebaseUser.getUid());
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        binding.recyclerViewUser.setLayoutManager(layoutManager);
+
+        database.getReference().child("Users").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                  for(DataSnapshot snapshots : snapshot.getChildren()){
-                      User users = snapshot.getValue(User.class);
-                      userArray.add(users);
-                  }
+                list.clear();
+                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    User users = dataSnapshot.getValue(User.class);
+                    users.setUserId(dataSnapshot.getKey());
+                   // Log.i(LOG_TAG,"UserId: "+users.getUserId());
+                    // users.setStatus(false);
+                    list.add(users);
+                }
+                userAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -69,10 +81,7 @@ public class UsersFragment extends Fragment {
 
             }
         });
-        UserAdapter ua = new UserAdapter(userArray,rv,view.getContext());
-        rv.setAdapter(ua);
-        rv.setLayoutManager( new LinearLayoutManager(view.getContext())) ;
-        ua.notifyDataSetChanged();
-        return view;
+
+        return binding.getRoot();
     }
 }
