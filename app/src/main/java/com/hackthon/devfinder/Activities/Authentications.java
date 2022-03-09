@@ -9,6 +9,8 @@ import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.hackthon.devfinder.Adapters.FragmentAdapter;
 import com.hackthon.devfinder.MainActivity;
 import com.hackthon.devfinder.R;
@@ -20,6 +22,7 @@ public class Authentications extends AppCompatActivity {
     TabLayout tabLayout;
     ActivityAuthenticationsBinding binding;
     FloatingActionButton googleAuthButton;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,8 @@ public class Authentications extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         googleAuthButton = findViewById(R.id.google_auth_button);
+/*        FirebaseUser user = mAuth.getCurrentUser();
+        updateUI(user);*/
         binding.googleAuthButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,4 +49,5 @@ public class Authentications extends AppCompatActivity {
 
 
     }
+   /* updateUser()*/
 }

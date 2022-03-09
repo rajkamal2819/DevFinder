@@ -37,22 +37,16 @@ public class LogInFragment extends Fragment {
     public LogInFragment() {
 
     }
-    @Override
-    public void onStart() {
-        super.onStart();
-        FirebaseUser user = mAuth.getCurrentUser();
-
-        updateUI(user);
-    }
 
 
-/*        @Override
+
+        @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FirebaseUser user = mAuth.getCurrentUser();
         updateUI(user);
 
-    }*/
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,7 +57,8 @@ public class LogInFragment extends Fragment {
         FirebaseUser user = mAuth.getCurrentUser();
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Sign in");
-        progressDialog.setMessage("please wait signing you in");        updateUI(user);
+        progressDialog.setMessage("please wait signing you in");
+        updateUI(user);
         pass = v.findViewById(R.id.password);
         email = v.findViewById(R.id.emailId);
         signin = v.findViewById(R.id.login);
