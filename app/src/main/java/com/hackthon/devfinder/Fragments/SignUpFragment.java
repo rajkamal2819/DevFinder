@@ -3,7 +3,6 @@ package com.hackthon.devfinder.Fragments;
 import static android.content.ContentValues.TAG;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -40,7 +39,7 @@ public class SignUpFragment extends Fragment {
     Button signup;
     String su_email, su_password, su_username;
     private DatabaseReference mDatabase;
-    private ProgressDialog progressDialog;
+
 
     FirebaseDatabase firebaseDatabase;
     private FirebaseAuth mAuth;
@@ -68,17 +67,14 @@ public class SignUpFragment extends Fragment {
         su_email = signup_email.getText().toString();
         mDatabase = FirebaseDatabase.getInstance().getReference();
         firebaseDatabase = FirebaseDatabase.getInstance();
+
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 su_password = signup_password.getText().toString();
                 su_username = signup_username.getText().toString();
                 su_email = signup_email.getText().toString();
 
-                progressDialog = new ProgressDialog(getContext());
-                progressDialog.setTitle("Creating Account");
-                progressDialog.setMessage("We are Creating Account");
                 signup();
 
             }
@@ -91,7 +87,6 @@ public class SignUpFragment extends Fragment {
                 || TextUtils.isEmpty(su_username)) {
             Toast.makeText(getView().getContext(), "Please fill all requirements", Toast.LENGTH_SHORT).show();
         } else {
-            progressDialog.show();
             mAuth.createUserWithEmailAndPassword(su_email, su_password)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -103,19 +98,16 @@ public class SignUpFragment extends Fragment {
 
                                 String id = task.getResult().getUser().getUid();
                                 firebaseDatabase.getReference().child("Users").child(id).setValue(user1);
-                                Toast.makeText(getContext(), "User Created Successfully", Toast.LENGTH_SHORT).show();
-                                /*Intent x = new Intent(getView().getContext(), UserInfo.class);
-                                startActivity(x);*/
 
-                                getFragmentManager().beginTransaction()
-                                        .add(android.R.id.content, new Interests ()).commit();
+                                Intent x = new Intent(getView().getContext(), UserInfo.class);
+                                startActivity(x);
                                 Log.i(LOG_TAG, "Update UI Working");
 
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                Toast.makeText(getContext(), task.getException().toString(), Toast.LENGTH_SHORT).show();
-                                progressDialog.dismiss();
+                                Toast.makeText(getContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
+
                             }
                         }
                     });
