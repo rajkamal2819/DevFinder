@@ -2,6 +2,7 @@ package com.hackthon.devfinder.Fragments;
 
 import static android.content.ContentValues.TAG;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -31,6 +32,7 @@ public class LogInFragment extends Fragment {
     Button signin;
     String emailid, password;
     private FirebaseAuth mAuth;
+     ProgressDialog progressDialog;
     FirebaseUser user;
     public LogInFragment() {
 
@@ -59,8 +61,9 @@ public class LogInFragment extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
-
-        updateUI(user);
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setTitle("Sign in");
+        progressDialog.setMessage("please wait signing you in");        updateUI(user);
         pass = v.findViewById(R.id.password);
         email = v.findViewById(R.id.emailId);
         signin = v.findViewById(R.id.login);
@@ -87,11 +90,13 @@ public class LogInFragment extends Fragment {
         if (TextUtils.isEmpty(emailid) || TextUtils.isEmpty(password)) {
             Toast.makeText(getView().getContext(), "Please fill all requirements", Toast.LENGTH_SHORT).show();
         } else {
+            progressDialog.show();
             mAuth.signInWithEmailAndPassword(emailid, password)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
+                                progressDialog.dismiss();
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d(TAG, "signInWithEmail:success");
                                  user = mAuth.getCurrentUser();
@@ -111,9 +116,11 @@ public class LogInFragment extends Fragment {
     private void updateUI(FirebaseUser currentUser) {
         if (currentUser != null) {
             Intent x = new Intent(getContext(), MainActivity.class);
+            progressDialog.dismiss();
             startActivity(x);
         }
 
+        progressDialog.dismiss();
 
     }
 }
