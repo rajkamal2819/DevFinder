@@ -3,21 +3,28 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Anirudh/StudioProjects/DevFinder/app/src/main/res/drawable/ic_baseline_phone_android_24.xml" value="0.1125" />
-        <entry key="..\:/Users/Anirudh/StudioProjects/DevFinder/app/src/main/res/drawable/user_gradient_bg.xml" value="0.1125" />
-        <entry key="..\:/Users/Anirudh/StudioProjects/DevFinder/app/src/main/res/layout/activity_authentications.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/Anirudh/StudioProjects/DevFinder/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/Anirudh/StudioProjects/DevFinder/app/src/main/res/layout/activity_sign_up.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/Anirudh/StudioProjects/DevFinder/app/src/main/res/layout/activity_user_info.xml" value="0.292259083728278" />
-        <entry key="..\:/Users/Anirudh/StudioProjects/DevFinder/app/src/main/res/layout/dialog_addtag.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/Anirudh/StudioProjects/DevFinder/app/src/main/res/layout/fragment_home.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/Anirudh/StudioProjects/DevFinder/app/src/main/res/layout/fragment_interests.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/Anirudh/StudioProjects/DevFinder/app/src/main/res/layout/fragment_log_in.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/Anirudh/StudioProjects/DevFinder/app/src/main/res/layout/fragment_more.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/Anirudh/StudioProjects/DevFinder/app/src/main/res/layout/fragment_sign_up.xml" value="0.2" />
-        <entry key="..\:/Users/Anirudh/StudioProjects/DevFinder/app/src/main/res/layout/fragment_users.xml" value="0.1" />
-        <entry key="..\:/Users/Anirudh/StudioProjects/DevFinder/app/src/main/res/layout/repo_item.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/Anirudh/StudioProjects/DevFinder/app/src/main/res/layout/user_item.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/DevFinder/app/src/main/res/drawable-v24/button_shape.xml" value="0.14322916666666666" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/DevFinder/app/src/main/res/drawable-v24/edittext_rounded.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/DevFinder/app/src/main/res/drawable-v24/ic_baseline_email_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/DevFinder/app/src/main/res/drawable-v24/ic_baseline_home_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/DevFinder/app/src/main/res/drawable-v24/ic_baseline_lock_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/DevFinder/app/src/main/res/drawable-v24/ic_baseline_person_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/DevFinder/app/src/main/res/drawable-v24/ic_baseline_search_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/DevFinder/app/src/main/res/drawable-v24/layout_shape.xml" value="0.14322916666666666" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/DevFinder/app/src/main/res/drawable/ic_baseline_done_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/DevFinder/app/src/main/res/layout/activity_authentications.xml" value="0.25" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/DevFinder/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/DevFinder/app/src/main/res/layout/activity_repository_details.xml" value="0.19375" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/DevFinder/app/src/main/res/layout/activity_user_details.xml" value="0.2359375" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/DevFinder/app/src/main/res/layout/commit_item.xml" value="0.25" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/DevFinder/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/DevFinder/app/src/main/res/layout/fragment_log_in.xml" value="0.2359375" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/DevFinder/app/src/main/res/layout/fragment_more.xml" value="0.25" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/DevFinder/app/src/main/res/layout/fragment_sign_up.xml" value="0.25" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/DevFinder/app/src/main/res/layout/fragment_users.xml" value="0.25" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/DevFinder/app/src/main/res/layout/repo_item.xml" value="0.25" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/DevFinder/app/src/main/res/layout/user_item.xml" value="0.25" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/DevFinder/app/src/main/res/menu/menu.xml" value="0.25" />
       </map>
     </option>
   </component>
