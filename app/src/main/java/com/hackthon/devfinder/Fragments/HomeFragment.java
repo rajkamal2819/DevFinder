@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.hackthon.devfinder.Adapters.RepoResAdapter;
 import com.hackthon.devfinder.Models.RepositoryMod;
@@ -41,12 +42,18 @@ public class HomeFragment extends Fragment {
         HomeAsyncTask task = new HomeAsyncTask();
         task.execute();
 
-        /*binding.done.setOnClickListener(new View.OnClickListener() {
+        binding.done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String link = jsonStart + binding.edittextInterests.getText().toString().toString() + "per_page=20";
+                binding.progressBar.setVisibility(View.VISIBLE);
+                Toast.makeText(getContext(),"Loading...",Toast.LENGTH_SHORT).show();
+                String link = jsonStart + binding.edittextInterests.getText().toString().trim() + "&per_page=20";
+                JsonResponseLink = link;
+                HomeAsyncTask task1 = new HomeAsyncTask();
+                task1.execute();
+                Log.i(LogTag,JsonResponseLink);
             }
-        });*/
+        });
 
         return binding.getRoot();
     }

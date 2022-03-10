@@ -16,6 +16,7 @@ import java.net.URL;
 import java.util.List;
 
 import com.bumptech.glide.Glide;
+import com.hackthon.devfinder.Activities.RepositoryDetailsActivity;
 import com.hackthon.devfinder.Models.RepositoryMod;
 import com.hackthon.devfinder.R;
 
@@ -41,6 +42,17 @@ public class RepoResAdapter extends RecyclerView.Adapter<RepoResAdapter.RepoResH
     public void onBindViewHolder(@NonNull RepoResHolder holder, int position) {
 
         holder.setDetails(list.get(position));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i  = new Intent(context, RepositoryDetailsActivity.class);
+                RepositoryMod model = list.get(holder.getAdapterPosition());
+                i.putExtra("devName",model.getDevName());
+                i.putExtra("devAvatar",model.getDevAvatar());
+                i.putExtra("commitLink",model.getCommits_url());
+                context.startActivity(i);
+            }
+        });
 
     }
 

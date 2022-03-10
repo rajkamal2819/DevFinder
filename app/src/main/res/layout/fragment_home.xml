@@ -29,7 +29,7 @@
                 android:textColor="@color/dark_grey" />
 
             <ImageView
-                android:id="@+id/btn_done"
+                android:id="@+id/done"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_margin="10dp"

@@ -29,6 +29,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
         this.context = context;
     }
 
+    public UserAdapter(ArrayList<User> list, Context context) {
+        this.list = list;
+        this.context = context;
+    }
+
     @NonNull
     @Override
     public UserAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -62,7 +67,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
         }
 
         public void setDetails(User model){
-           username.setText(model.getUsername());
+           username.setText(model.getName());
 
         }
 
