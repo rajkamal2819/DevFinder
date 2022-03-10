@@ -50,6 +50,7 @@ public class RepoResAdapter extends RecyclerView.Adapter<RepoResAdapter.RepoResH
                 i.putExtra("devName",model.getDevName());
                 i.putExtra("devAvatar",model.getDevAvatar());
                 i.putExtra("commitLink",model.getCommits_url());
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(i);
             }
         });

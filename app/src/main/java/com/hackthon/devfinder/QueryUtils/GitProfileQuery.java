@@ -135,6 +135,7 @@ public class GitProfileQuery {
             profile.setOrganisationUrl(baseJsonObj.getString("organizations_url"));
             profile.setTwitterName(baseJsonObj.getString("twitter_username"));
             profile.setStarredUrl(baseJsonObj.getString("starred_url"));
+            profile.setAllRepoLink(baseJsonObj.getString("repos_url"));
 
             commitsDetList.add(profile);
 

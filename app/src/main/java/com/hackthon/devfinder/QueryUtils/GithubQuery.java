@@ -28,7 +28,7 @@ public class GithubQuery {
     private static String LOG_TAG = GithubQuery.class.getSimpleName();
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public static ArrayList<RepositoryMod> fetchRepoData(String requestUrl) {
+    public static ArrayList<RepositoryMod> fetchRepoData(String requestUrl,int uniqueL) {
         // Create URL object
         URL url = createUrl(requestUrl);
 
@@ -41,7 +41,7 @@ public class GithubQuery {
         }
 
         // Extract relevant fields from the JSON response and create an {@link Event} object
-        ArrayList<RepositoryMod> repoInfo = extractFeatureFromJson(jsonResponse);
+        ArrayList<RepositoryMod> repoInfo = extractFeatureFromJson(jsonResponse,uniqueL);
 
         // Return the {@link Event}
         return repoInfo;
@@ -117,7 +117,7 @@ public class GithubQuery {
         return output.toString();
     }
 
-    private static ArrayList<RepositoryMod> extractFeatureFromJson(String jsonResponse) {
+    private static ArrayList<RepositoryMod> extractFeatureFromJson(String jsonResponse,int uniqueL) {
         // If the JSON string is empty or null, then return early.
         ArrayList<RepositoryMod> coursesArrayList = new ArrayList<>();
         if (TextUtils.isEmpty(jsonResponse)) {
@@ -125,8 +125,13 @@ public class GithubQuery {
         }
 
         try {
-            JSONObject baseJasonObject = new JSONObject(jsonResponse);
-            JSONArray items = baseJasonObject.getJSONArray("items");
+            JSONArray items = null;
+            if(uniqueL == 1) {
+                JSONObject baseJasonObject = new JSONObject(jsonResponse);
+                items = baseJasonObject.getJSONArray("items");
+            } else{
+                items = new JSONArray(jsonResponse);
+            }
 
             for (int i = 0;i<items.length();i++){
 
