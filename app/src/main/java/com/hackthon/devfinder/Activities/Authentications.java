@@ -22,7 +22,7 @@ public class Authentications extends AppCompatActivity {
     TabLayout tabLayout;
     ActivityAuthenticationsBinding binding;
     FloatingActionButton googleAuthButton;
-    private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,18 +36,7 @@ public class Authentications extends AppCompatActivity {
         viewPager.setAdapter(new FragmentAdapter(getSupportFragmentManager()));
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-        googleAuthButton = findViewById(R.id.google_auth_button);
-/*        FirebaseUser user = mAuth.getCurrentUser();
-        updateUI(user);*/
-        binding.googleAuthButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Authentications.this, MainActivity.class));
-            }
-        });
-
-
 
     }
-   /* updateUser()*/
+
 }

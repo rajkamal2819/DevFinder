@@ -55,11 +55,11 @@ public class MoreFragment extends Fragment {
     TextView email ,username,interests,description;
     FirebaseUser firebaseUser;
     FirebaseAuth auth;
-    FirebaseStorage storage;
+
     FirebaseDatabase database;
     ImageView image_edit,image;
     Uri selectedImage;
-    Button saveimg;
+
 
     public MoreFragment() {
         // Required empty public constructor
@@ -89,7 +89,7 @@ public class MoreFragment extends Fragment {
         auth = FirebaseAuth.getInstance();
         signout = view.findViewById(R.id.sign_out);
         image_edit = view.findViewById(R.id.edit_pic);
-        saveimg = view.findViewById(R.id.saveimg);
+
         image = view.findViewById(R.id.editProfilePhoto);
         signout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,46 +131,6 @@ public class MoreFragment extends Fragment {
                 imageChooser();
             }
         });
-        saveimg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                
-                if(selectedImage != null) {
-                    StorageReference reference = storage.getReference().child("Profiles").child(auth.getUid());
-                    reference.putFile(selectedImage).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                            if(task.isSuccessful()) {
-                                reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                    @Override
-                                    public void onSuccess(Uri uri) {
-                                        String imageUrl = uri.toString();
-
-
-
-                                        User user = new User();
-                                        user.setImageUrl(imageUrl);
-
-
-                                        database.getReference().child("Users").child(FirebaseAuth.getInstance().getUid())
-                                                .child("profilePic").setValue(user.getImageUrl()).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void unused) {
-                                                Toast.makeText(getContext(),"Profile Updated successfully",Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
-
-
-                                    }
-                                });
-                            }
-                        }
-                    });
-                }
-            }
-        });
-
 
         return view;
     }
