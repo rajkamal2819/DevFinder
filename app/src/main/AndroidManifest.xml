@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hackthon.devfinder">
+    package="com.hackthon.devfinder" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.DevFinder">
+        android:theme="@style/Theme.DevFinder" >
         <activity
             android:name=".Activities.RepositoryResults"
             android:exported="true" />
@@ -24,7 +24,7 @@
             android:name=".Activities.Authentications"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/mainPage">
+            android:theme="@style/mainPage" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -40,12 +40,12 @@
             android:name=".UserInfo"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/mainPage"></activity>
+            android:theme="@style/mainPage" />
         <activity
             android:name=".Fragments.Interests"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/mainPage"></activity>
+            android:theme="@style/mainPage" />
     </application>
 
 </manifest>

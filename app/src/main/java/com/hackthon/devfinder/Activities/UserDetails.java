@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.bumptech.glide.Glide;
@@ -29,6 +30,9 @@ public class UserDetails extends AppCompatActivity {
     private String githubLink;
     private String starredRepoLink = "";
     private String allRepoLink = "";
+    private String devImage = "";
+    private String location = "";
+    private String devAvatar = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,18 +41,7 @@ public class UserDetails extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         String devName = getIntent().getStringExtra("name");
-        String devAvatar = getIntent().getStringExtra("image");
-        if (devAvatar != null) {
-            try {
-                Glide.with(getApplicationContext())
-                        .load(new URL(devAvatar))
-                        .into(binding.prfoileImage);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-        } else {
-            Glide.with(getApplicationContext()).load(R.drawable.user).into(binding.prfoileImage);
-        }
+      //  String devAvatar = getIntent().getStringExtra("image");
         // https://api.github.com/users/rajkamal2819/repos
         JsonResponseLink = "https://api.github.com/users/"+devName;
         UserAsyncTask task = new UserAsyncTask();
@@ -63,6 +56,15 @@ public class UserDetails extends AppCompatActivity {
             }
         });
 
+        binding.starredRepo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),RepositoryResults.class);
+                i.putExtra("link",allRepoLink);
+                startActivity(i);
+            }
+        });
+
         binding.allRepositeries.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,6 +73,7 @@ public class UserDetails extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
 
     }
 
@@ -83,7 +86,23 @@ public class UserDetails extends AppCompatActivity {
         githubLink = model.getHtmlLink();
         starredRepoLink = model.getStarredUrl();
         allRepoLink = model.getAllRepoLink();
+        devImage = model.getAvatar();
+        location = model.getLocation();
+        devAvatar = model.getAvatar();
 
+        if (devAvatar != null) {
+            try {
+                Glide.with(getApplicationContext())
+                        .load(new URL(devAvatar))
+                        .into(binding.prfoileImage);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Glide.with(getApplicationContext()).load(R.drawable.user).into(binding.prfoileImage);
+        }
+        binding.location.setText(location);
+        Log.i("UserDetails","Location: "+location);
 
     }
 

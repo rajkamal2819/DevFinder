@@ -17,6 +17,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.hackthon.devfinder.Fragments.HomeFragment;
+import com.hackthon.devfinder.databinding.ActivityUserDetailsBinding;
+import com.hackthon.devfinder.databinding.ActivityUserInfoBinding;
 
 public class UserInfo extends AppCompatActivity {
 Button signout;
@@ -25,9 +27,11 @@ Button signout;
 
     FirebaseAuth auth;
     FirebaseDatabase database;
+    ActivityUserInfoBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        binding = ActivityUserInfoBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         setContentView(R.layout.activity_user_info);
          email = findViewById(R.id.email);
          username = findViewById(R.id.username1);
@@ -66,5 +70,6 @@ Button signout;
 
                     }
                 });
+
     }
 }
