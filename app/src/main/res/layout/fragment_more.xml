@@ -19,8 +19,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-
                 android:orientation="vertical">
+                <Button
+                    android:id="@+id/saveimg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Save"
+                    android:layout_marginLeft="300dp"
+                    />
 
                 <ImageView
                     android:id="@+id/editProfilePhoto"
@@ -45,6 +51,7 @@
                     android:textColor="#FF0000"
                     android:textSize="21sp"
                     android:textStyle="bold" />
+
             </LinearLayout>
 
             <androidx.cardview.widget.CardView

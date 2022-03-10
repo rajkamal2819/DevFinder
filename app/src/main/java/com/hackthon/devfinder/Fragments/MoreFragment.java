@@ -59,6 +59,7 @@ public class MoreFragment extends Fragment {
     FirebaseDatabase database;
     ImageView image_edit,image;
     Uri selectedImage;
+    Button saveimg;
 
     public MoreFragment() {
         // Required empty public constructor
@@ -88,6 +89,7 @@ public class MoreFragment extends Fragment {
         auth = FirebaseAuth.getInstance();
         signout = view.findViewById(R.id.sign_out);
         image_edit = view.findViewById(R.id.edit_pic);
+        saveimg = view.findViewById(R.id.saveimg);
         image = view.findViewById(R.id.editProfilePhoto);
         signout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,6 +129,12 @@ public class MoreFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 imageChooser();
+            }
+        });
+        saveimg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
                 
                 if(selectedImage != null) {
                     StorageReference reference = storage.getReference().child("Profiles").child(auth.getUid());
@@ -166,6 +174,8 @@ public class MoreFragment extends Fragment {
 
         return view;
     }
+
+
     void imageChooser() {
 
         // create an instance of the
