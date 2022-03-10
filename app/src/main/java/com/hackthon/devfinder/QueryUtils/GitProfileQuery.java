@@ -41,7 +41,7 @@ public class GitProfileQuery {
         }
 
         // Extract relevant fields from the JSON response and create an {@link Event} object
-        ArrayList<GithubProfile> infoList = extractFeatureFromJson(requestUrl);
+        ArrayList<GithubProfile> infoList = extractFeatureFromJson(jsonResponse);
 
         // Return the {@link Event}
         return infoList;

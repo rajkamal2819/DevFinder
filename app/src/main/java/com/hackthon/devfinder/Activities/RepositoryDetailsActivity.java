@@ -4,6 +4,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -59,10 +60,12 @@ public class RepositoryDetailsActivity extends AppCompatActivity {
         binding.viewprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent i = new Intent(getApplicationContext(),UserDetails.class);
+                i.putExtra("name",devName);
+                i.putExtra("image",devAvatar);
+                startActivity(i);
             }
         });
-
     }
 
     protected void updateUi(ArrayList<CommitDetails> list){
