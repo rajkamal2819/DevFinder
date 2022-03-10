@@ -20,13 +20,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> {
-    private ArrayList<com.hackthon.devfinder.User> list;
+    private ArrayList<com.hackthon.devfinder.User> list ;
 
-    private RecyclerView recyclerView;
     private Context context;
-    public UserAdapter(ArrayList<User> list, RecyclerView recyclerView, Context context) {
+    public UserAdapter(ArrayList<User> list, Context context) {
         this.list = list;
-        this.recyclerView = recyclerView;
+
         this.context = context;
     }
 
@@ -45,6 +44,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
     public int getItemCount() {
        return list.size();
     }
+
     static class MyViewHolder extends RecyclerView.ViewHolder {
 
         ImageView profileimage;

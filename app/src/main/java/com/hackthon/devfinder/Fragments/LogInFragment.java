@@ -43,8 +43,7 @@ public class LogInFragment extends Fragment {
         @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FirebaseUser user = mAuth.getCurrentUser();
-        updateUI(user);
+
 
     }
 
@@ -70,7 +69,6 @@ public class LogInFragment extends Fragment {
                 emailid = email.getText().toString();
                 password = pass.getText().toString();
                 if ((emailid != null) || (password != null)) {
-
                     signin();
                 } else {
                     Toast.makeText(getView().getContext(), "Please enter email and password", Toast.LENGTH_LONG).show();

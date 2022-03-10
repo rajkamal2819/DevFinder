@@ -21,7 +21,7 @@ import com.hackthon.devfinder.Fragments.HomeFragment;
 public class UserInfo extends AppCompatActivity {
 Button signout;
     FirebaseUser firebaseUser;
-    TextView email ,username;
+    TextView email ,username,interests,description;
 
     FirebaseAuth auth;
     FirebaseDatabase database;
@@ -31,6 +31,7 @@ Button signout;
         setContentView(R.layout.activity_user_info);
          email = findViewById(R.id.email);
          username = findViewById(R.id.username1);
+         interests = findViewById(R.id.interest);
         auth = FirebaseAuth.getInstance();
         signout = findViewById(R.id.sign_out);
         signout.setOnClickListener(new View.OnClickListener() {
@@ -54,8 +55,10 @@ Button signout;
                       /*  Picasso.get().load(users.getProfilePic()).placeholder(R.drawable.user_profile_img).into(binding.editProfilePhoto);*/
                         email.setText(users.getEmail());
                         username.setText(users.getUsername());
-                       /* binding.description.setText(users.getStatus());
-                        binding.username.setText(users.getName());*/
+                       interests.setText(users.getInterests());
+                        description.setText(users.getDescription());
+
+
                     }
 
                     @Override

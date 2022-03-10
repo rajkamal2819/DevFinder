@@ -1,72 +1,56 @@
 package com.hackthon.devfinder.Fragments;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.hackthon.devfinder.Activities.Authentications;
+import com.hackthon.devfinder.MainActivity;
 import com.hackthon.devfinder.R;
+import com.hackthon.devfinder.User;
+import com.hackthon.devfinder.UserInfo;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link MoreFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class MoreFragment extends Fragment {
 
+    Button signout;
+    FirebaseUser firebaseUser;
+    TextView email ,username,interests,description;
 
-    Button add,cancel,addtag;
-    ImageView linkedin,stackoverflow,github;
-    Dialog dialog;
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    FirebaseAuth auth;
+    FirebaseDatabase database;
 
     public MoreFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MoreFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static MoreFragment newInstance(String param1, String param2) {
-        MoreFragment fragment = new MoreFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
 
-//        addtag = add.findViewById(R.id.addTag);
-        Toast.makeText(getContext(), "On create", Toast.LENGTH_SHORT).show();
+
+
         
     }
 
@@ -75,47 +59,48 @@ public class MoreFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_more, container, false);
+        email = view.findViewById(R.id.email);
+        username = view.findViewById(R.id.username1);
+        interests = view.findViewById(R.id.interest);
+        description = view.findViewById(R.id.description);
+        auth = FirebaseAuth.getInstance();
+        signout = view.findViewById(R.id.sign_out);
+        signout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                auth.signOut();
 
-      /*  addtag = (Button) getActivity().findViewById(R.id.addTag);
-        linkedin = (ImageView) getActivity().findViewById(R.id.linkedin_img);
-        stackoverflow = (ImageView) getActivity().findViewById(R.id.stackoverflow_img);
-        github = (ImageView) getActivity().findViewById(R.id.github_img);*/
+                Intent i = new Intent(getContext(), Authentications.class);
+                startActivity(i);
+            }
+        });
 
-        //Toast.makeText(getContext(), "On create view", Toast.LENGTH_SHORT).show();
+        auth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-//        dialog = new Dialog(view.getContext());
-//        dialog.setContentView(R.layout.dialog_addtag);
-//        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-//        add = dialog.findViewById(R.id.btn_add);
-//        cancel = dialog.findViewById(R.id.btn_cancel);
-//
-//
-//
-//        add.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                Toast.makeText(getContext(), "Added", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//        cancel.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(getContext(), "Canceld", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//        addtag = addtag.findViewById(R.id.addTag);
-//        addtag.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                dialog.show();
-//            }
-//        });
+        database.getReference().child("Users").child(FirebaseAuth.getInstance().getUid())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        User users = snapshot.getValue(User.class);
+                        /*  Picasso.get().load(users.getProfilePic()).placeholder(R.drawable.user_profile_img).into(binding.editProfilePhoto);*/
+                        email.setText(users.getEmail());
+                        username.setText(users.getUsername());
+                        interests.setText(users.getInterests());
+                        description.setText(users.getDescription());
 
 
+                    }
 
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
         return view;
     }
-}
+
+
+
+    }

@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -32,6 +34,7 @@ public class UsersFragment extends Fragment {
    RecyclerView rv;
     FirebaseAuth auth;
     FirebaseDatabase database;
+    String s;
     public UsersFragment() {
         // Required empty public constructor
     }
@@ -48,20 +51,40 @@ public class UsersFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_users, container, false);
-        auth = FirebaseAuth.getInstance();
-        database = FirebaseDatabase.getInstance();
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-
         rv = view.findViewById(R.id.recyclerViewUser);
+        auth = FirebaseAuth.getInstance();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        database = FirebaseDatabase.getInstance();
+        DatabaseReference dbref = database.getReference(auth.getUid());
+        LinearLayoutManager layoutManager = new LinearLayoutManager((getContext()));
+        rv.setLayoutManager(layoutManager);
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Uses");
-        reference.addValueEventListener(new ValueEventListener() {
+        database.getReference().child("Users").child(FirebaseAuth.getInstance().getUid())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        User users = snapshot.getValue(User.class);
+
+                        /*binding.email.setText(users.getEmailId());
+                        binding.description.setText(users.getStatus());
+                        binding.username.setText(users.getName());*/
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+        dbref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                  for(DataSnapshot snapshots : snapshot.getChildren()){
-                      User users = snapshot.getValue(User.class);
-                      userArray.add(users);
-                  }
+                for(DataSnapshot snapshots : snapshot.getChildren()){
+                    User users = snapshots.getValue(User.class);
+                    userArray.add(users);
+
+                }
+
             }
 
             @Override
@@ -69,10 +92,14 @@ public class UsersFragment extends Fragment {
 
             }
         });
-        UserAdapter ua = new UserAdapter(userArray,rv,view.getContext());
+
+
+        UserAdapter ua = new UserAdapter(userArray,getContext());
         rv.setAdapter(ua);
-        rv.setLayoutManager( new LinearLayoutManager(view.getContext())) ;
-        ua.notifyDataSetChanged();
+
+        Toast.makeText(getContext(),s,Toast.LENGTH_LONG).show();
+
+
         return view;
     }
 }
