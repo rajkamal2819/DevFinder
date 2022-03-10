@@ -23,12 +23,18 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/editProfilePhoto"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="45dp"
                     android:src="@drawable/user_profile_img" />
-
+<ImageView
+    android:id="@+id/edit_pic"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="200dp"
+    android:src="@drawable/ic_baseline_edit_24"/>
                 <TextView
                     android:id="@+id/username1"
                     android:layout_width="wrap_content"

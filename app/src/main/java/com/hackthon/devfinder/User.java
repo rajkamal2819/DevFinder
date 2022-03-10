@@ -54,18 +54,28 @@ public class User {
         this.interests = interests;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String imageUrl;
     public String description;
     public String interests;
     public User() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public User(String username, String email,String password,String description,String interests) {
+    public User(String username, String email,String password,String description,String interests,String imageUrl) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.description = description;
         this.interests = interests;
+        this.imageUrl = imageUrl;
 
     }
 

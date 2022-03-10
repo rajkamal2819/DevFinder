@@ -84,7 +84,7 @@ public class SignUpFragment extends Fragment {
                                     if (task.isSuccessful()) {
                                         // Sign in success, update UI with the signed-in user's information
                                         Log.d(TAG, "createUserWithEmail:success");
-                                        User user1 = new User(su_username, su_email, su_password,signup_d.getText().toString(),signup_i.getText().toString());
+                                        User user1 = new User(su_username, su_email, su_password,signup_d.getText().toString(),signup_i.getText().toString(),null);
 
                                         String id = task.getResult().getUser().getUid();
                                         firebaseDatabase.getReference().child("Users").child(id).setValue(user1);

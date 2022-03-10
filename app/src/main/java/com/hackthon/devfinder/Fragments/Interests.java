@@ -100,11 +100,11 @@ public class Interests extends AppCompatActivity {
             }
         });
     }
+
     public void writeNewUser(String description,String list) {
 
 
         FirebaseUser user = mAuth.getCurrentUser();
-
         mDatabase.child("Users").child(user.getUid()).child("description").setValue(description);
         mDatabase.child("Users").child(user.getUid()).child("interest").setValue(list);
         Intent i = new Intent(this, MainActivity.class);
