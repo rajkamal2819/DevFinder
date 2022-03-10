@@ -10,6 +10,15 @@ public class GithubProfile {
     private String location;
     private String bio;
     private String htmlLink;
+    private String allRepoLink;
+
+    public String getAllRepoLink() {
+        return allRepoLink;
+    }
+
+    public void setAllRepoLink(String allRepoLink) {
+        this.allRepoLink = allRepoLink;
+    }
 
     public String getName() {
         return name;

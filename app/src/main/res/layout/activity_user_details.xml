@@ -106,7 +106,7 @@
                 app:cardElevation="6dp">
 
                 <LinearLayout
-                    android:id="@+id/githubLink"
+                    android:id="@+id/allRepositeries"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="#FFFFF7"
@@ -143,7 +143,7 @@
                 app:cardElevation="6dp">
 
                 <LinearLayout
-                    android:id="@+id/chats"
+                    android:id="@+id/githubLink"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="#FFFFF7"

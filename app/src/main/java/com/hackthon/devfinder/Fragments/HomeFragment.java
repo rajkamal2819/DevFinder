@@ -72,7 +72,7 @@ public class HomeFragment extends Fragment {
         @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
         protected ArrayList<RepositoryMod> doInBackground(URL... urls) {
-            ArrayList<RepositoryMod> event = GithubQuery.fetchRepoData(JsonResponseLink);            //also we can use  urls[0]
+            ArrayList<RepositoryMod> event = GithubQuery.fetchRepoData(JsonResponseLink,1);            //also we can use  urls[0]
             return event;
         }
 

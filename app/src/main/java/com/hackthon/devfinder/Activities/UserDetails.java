@@ -3,6 +3,8 @@ package com.hackthon.devfinder.Activities;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -24,6 +26,9 @@ public class UserDetails extends AppCompatActivity {
 
     private static String JsonResponseLink = "";
     ActivityUserDetailsBinding binding;
+    private String githubLink;
+    private String starredRepoLink = "";
+    private String allRepoLink = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +54,24 @@ public class UserDetails extends AppCompatActivity {
         UserAsyncTask task = new UserAsyncTask();
         task.execute();
 
+        binding.githubLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setData(Uri.parse(githubLink));
+                startActivity(i);
+            }
+        });
+
+        binding.allRepositeries.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),RepositoryResults.class);
+                i.putExtra("link",allRepoLink);
+                startActivity(i);
+            }
+        });
+
     }
 
     protected void updateUi(ArrayList<GithubProfile> list){
@@ -57,6 +80,9 @@ public class UserDetails extends AppCompatActivity {
 
         binding.name.setText(model.getName());
         binding.bio.setText(model.getBio());
+        githubLink = model.getHtmlLink();
+        starredRepoLink = model.getStarredUrl();
+        allRepoLink = model.getAllRepoLink();
 
 
     }
